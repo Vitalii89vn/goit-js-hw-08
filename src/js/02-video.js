@@ -5,34 +5,17 @@ const player = new Player('vimeo-player', {
     id: 236203659,
     width: 640
 });
+const STORAGE_KEY = 'videoplayer-current-time';
 
-// const onPlay = player.on('timeupdate', function(data) {
-//     // data is an object containing properties specific to that event
-//  {
-//      duration:  61.857;
-//      percent: 0.049
-//      seconds: 3.034
-// }
-// });
-// const onPlay = function (data) {
-//     duration: 0
-//     percent: 0
-//     seconds: 0
-
-// };
 const onPlay = function (data) {
-    // {
-    //     data.seconds
-    // }
     {
-        duration: data.duration;
-        percent: data.percent;
-        seconds: data.seconds;
+    duration: data.duration;
+    percent: data.percent;
+    seconds: data.seconds;
     }
+    localStorage.setItem(STORAGE_KEY, data.seconds);
 };
-
-
-let timeUpdate = player.on('timeupdate', onPlay);
-console.log(timeUpdate);
-    
-localStorage.setItem("videoplayer-current-time", timeUpdate);
+player.on('timeupdate', throttle(onPlay, 1000));
+ 
+const currentTime = localStorage.getItem(STORAGE_KEY)
+player.setCurrentTime(currentTime)

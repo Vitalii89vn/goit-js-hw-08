@@ -4,6 +4,7 @@ const refs = {
     form: document.querySelector('.feedback-form'),
     email: document.querySelector('input'),
     message: document.querySelector('textarea'),
+    
     }
 
 const formData = {};
@@ -26,14 +27,22 @@ function onInput(event) {
 }
 function populateInput() {
     const savedData = localStorage.getItem(STORAGE_KEY);
-    console.log(savedData);
     const parseValue = JSON.parse(savedData);
    
     if (savedData) {
-        //   refs.form.name === parseValue.key
-        refs.email.value = Object.values(parseValue)[0];
-        refs.message.value = Object.values(parseValue)[1];
+            refs.email.value = Object.values(parseValue)[0];
+            refs.message.value = Object.values(parseValue)[1];
     }
-    console.log(refs.form.name === parseValue.key);
+        //   refs.form.name === parseValue.key
+// refs.form.value = parseValue[0]       
+        // for (const key in parseValue) {
+        //    if (refs.form.name === key) {
+        //        refs.form.value = parseValue[key];
+               
+        //     }
+            
+        // }
+    
+    // console.log(refs.form.name === parseValue.key);
     
 }

@@ -15,15 +15,17 @@ refs.form.addEventListener('submit', onFormSubmit);
 
 populateInput();
 
-function onFormSubmit(event) {
-    event.preventDefault(); 
-    event.currentTarget.reset();
-    localStorage.removeItem(STORAGE_KEY);
-}
-
 function onInput(event) {
     formData[event.target.name] = event.target.value;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(formData))
+}
+
+function onFormSubmit(event) {
+    event.preventDefault(); 
+    event.currentTarget.reset();
+    console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)));
+
+    localStorage.removeItem(STORAGE_KEY);
 }
 
 function populateInput() {
@@ -41,14 +43,3 @@ function populateInput() {
      }
     }
     
-    // if (savedData) {
-    //     for (let i = 0; i < refsEl.length; i+=1) {
-    //         const element = refsEl[i];
-    //         for (const key in parseValue) {
-    //         if (element.name === key) {
-    //             element.value = parseValue[key] || '';
-    //             }
-    //         };
-    //     }  
-    // }
-

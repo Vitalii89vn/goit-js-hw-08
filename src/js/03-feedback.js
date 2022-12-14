@@ -19,7 +19,7 @@ function onInput(event) {
 };
 function onFormSubmit(event) {
     event.preventDefault();
-    // console.log(localStorage.getItem(STORAGE_KEY));
+    console.log(localStorage.getItem(STORAGE_KEY));
   
     event.target.reset();
     localStorage.removeItem(STORAGE_KEY);
